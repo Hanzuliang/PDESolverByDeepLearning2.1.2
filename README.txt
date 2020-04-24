@@ -23,19 +23,19 @@ PDESolver(domain, n, realSolution, StructureOfNeuralNetwork, ImplicitSchemeOfEqu
 3. Case: 
 Case1.   First order differential equation
              real solution: u(x)= 5*x**3 + x**2 + 2*x + 1
-             u'(x) = 15*x**2 + 2*x + 2;   u(-1) = -4;   x¡Ê[-1,1]
+             u'(x) = 15*x**2 + 2*x + 2;   u(-1) = -4;   xÂ¡ÃŠ[-1,1]
 #Code of Case1
 import tensorflow as tf
 import PDESolverByDeepLearning.hanzuliang as PDESolver
 
-domain = [-1, 1]                                                                    	     			#Domain
-realSolution = lambda x: 5*x**3 + x**2 + 2*x + 1                                    			#Real solution
-n = 100                                                                             		     			#Divide the domain into n sample points
+domain = [-1, 1]                                                                    	#Domain
+realSolution = lambda x: 5*x**3 + x**2 + 2*x + 1                                    	#Real solution
+n = 100                                                                                 #Divide the domain into n sample points
 #If appear 'Fail rename; Input/output error', please delete the last saved model parameter file 'ckpt' and training again.
-StructureOfNeuralNetwork = [1, 10, 1]                                               			#Neural network structure
-ImplicitSchemeOfEquation = lambda x, u: tf.gradients(u, x)[0] - 15*x**2 - 2*x - 2   		#It must be the implicit scheme of the equation 
-DirichletBCPoint = [-1]                                                             				#Dirichlet boundary conditions
-numBatches = 30000                                                                  				#Number of iterations
+StructureOfNeuralNetwork = [1, 10, 1]                                               	#Neural network structure
+ImplicitSchemeOfEquation = lambda x, u: tf.gradients(u, x)[0] - 15*x**2 - 2*x - 2   	#It must be the implicit scheme of the equation 
+DirichletBCPoint = [-1]                                                             	#Dirichlet boundary conditions
+numBatches = 30000                                                                  	#Number of iterations
 y_output = PDESolver.PDESolver(domain, n, realSolution, StructureOfNeuralNetwork, ImplicitSchemeOfEquation, DirichletBCPoint, numBatches)
 print('The discrete solution predicted by Deep Learning is:')
 print(y_output)
@@ -43,18 +43,18 @@ print(y_output)
 
 Case2.     Second order differential equation
 	real solution: u(x)=x**5
-	u''(x)=20*x**3; u(-1)=-1; u(1)=1; x¡Ê[-1,1]
+	u''(x)=20*x**3; u(-1)=-1; u(1)=1; xÂ¡ÃŠ[-1,1]
 #Code of Case2
 import tensorflow as tf
 import PDESolverByDeepLearning.hanzuliang as PDESolver
 
-domain = [-1, 1]                                                                              				#Domain
-realSolution = lambda x: x**5                                                                 			#Real solution
-n = 100                                                                                       				#Divide the domain into n sample points
+domain = [-1, 1]                                                                              #Domain
+realSolution = lambda x: x**5                                                                 #Real solution
+n = 100                                                                                       #Divide the domain into n sample points
 #If appear 'Fail rename; Input/output error', please delete the last saved model parameter file 'ckpt' and training again.
-StructureOfNeuralNetwork = [1, 10, 5, 2, 1]                                                   			#Neural network structure
-ImplicitSchemeOfEquation = lambda x, u: tf.gradients(tf.gradients(u, x)[0], x)[0] - 20*x**3   	#It must be the implicit scheme of the equation
-DirichletBCPoint = [-1, 1]                                                                    			#Number of iterations
+StructureOfNeuralNetwork = [1, 10, 5, 2, 1]                                                   #Neural network structure
+ImplicitSchemeOfEquation = lambda x, u: tf.gradients(tf.gradients(u, x)[0], x)[0] - 20*x**3   #It must be the implicit scheme of the equation
+DirichletBCPoint = [-1, 1]                                                                    #Number of iterations
 numBatches = 30000
 y_output = PDESolver.PDESolver(domain, n, realSolution, StructureOfNeuralNetwork, ImplicitSchemeOfEquation, DirichletBCPoint, numBatches)
 print('The discrete solution predicted by Deep Learning is:')
@@ -63,19 +63,19 @@ print(y_output)
 
 Case3.	Third order differential equation
 	real solution: u(x)=x**7 + 2*x**5 + 3*x**3 + x**2
-	u'''(x) = 210*x**4 + 120*x**2 + 18; u(-1)=-5; u(0)=0; u(1)=7; x¡Ê[-1,1]
+	u'''(x) = 210*x**4 + 120*x**2 + 18; u(-1)=-5; u(0)=0; u(1)=7; xÂ¡ÃŠ[-1,1]
 #Code of Case3
 import tensorflow as tf
 import PDESolverByDeepLearning.hanzuliang as PDESolver
 
-domain = [-1, 1]                                                                              				#Domain
-realSolution = lambda x: x**7 + 2*x**5 + 3*x**3 + x**2                                        		#Real solution
-n = 100                                                                                      			 	#Divide the domain into n sample points
+domain = [-1, 1]                                                                       #Domain
+realSolution = lambda x: x**7 + 2*x**5 + 3*x**3 + x**2                                 #Real solution
+n = 100                                                                                #Divide the domain into n sample points
 #If appear 'Fail rename; Input/output error', please delete the last saved model parameter file 'ckpt' and training again.
-StructureOfNeuralNetwork = [1, 50, 20, 5, 1]                                                  			#Neural network structure
+StructureOfNeuralNetwork = [1, 50, 20, 5, 1]                                           #Neural network structure
 ImplicitSchemeOfEquation = lambda x, u: tf.gradients(tf.gradients(tf.gradients(u, x)[0], x)[0], x)[0]  - 210*x**4 - 120*x**2 - 18
-                                                                                              				#It must be the implicit scheme of the equation
-DirichletBCPoint = [-1, 0, 1]                                                                 			#Number of iterations
+                                                                                       #It must be the implicit scheme of the equation
+DirichletBCPoint = [-1, 0, 1]                                                          #Number of iterations
 numBatches = 50000
 y_output = PDESolver.PDESolver(domain, n, realSolution, StructureOfNeuralNetwork, ImplicitSchemeOfEquation, DirichletBCPoint, numBatches)
 print('The discrete solution predicted by Deep Learning is:')
