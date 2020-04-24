@@ -1,4 +1,4 @@
-import PDESolverByDeepLearning as PDESolver
+import PDESolverByDeepLearning.hanzuliang as PDESolver
 import tensorflow as tf
 
 '''
