@@ -1,0 +1,11 @@
+README.txt
+setup.py
+PDESolverByDeepLearning/__init__.py
+PDESolverByDeepLearning/hanzuliang.py
+PDESolverByDeepLearning.egg-info/PKG-INFO
+PDESolverByDeepLearning.egg-info/SOURCES.txt
+PDESolverByDeepLearning.egg-info/dependency_links.txt
+PDESolverByDeepLearning.egg-info/entry_points.txt
+PDESolverByDeepLearning.egg-info/requires.txt
+PDESolverByDeepLearning.egg-info/top_level.txt
+PDESolverByDeepLearning.egg-info/zip-safe
