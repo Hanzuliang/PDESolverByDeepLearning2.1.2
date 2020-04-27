@@ -64,7 +64,7 @@ domain = [-1, 1]                                                                
 realSolution = lambda x: x**5                                                                   #Real solution
 #If we do not know the true solution, please input the parameter as 'None'.
 #realSolution = None
-n = 100                                                                                                                            #Divide the domain into n sample points
+n = 100                                                                                         #Divide the domain into n sample points
 #If there is an exception of 'Fail rename;Input/output error',please delete the last saved model parameter file 'CKPT' and train again.
 StructureOfNeuralNetwork = [1, 10, 5, 2, 1]                                                     #Neural network structure
 ImplicitSchemeOfEquation = lambda x, u: tf.gradients(tf.gradients(u, x)[0], x)[0] - 20*x**3     #The implicit scheme of the equation
